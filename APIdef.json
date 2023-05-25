@@ -5,6 +5,6 @@
       "version": "1.0.0",
       "Descripcion": "ContenidoReadme" 
       },
-  "servers":[{"url": "apifinal-production.up.railway.app"}],
+  "servers":[{"url": "apifinal-production-6253.up.railway.app"}],
   "tags": [{"name":"vuelo","description":"Catalogo de vuelos"}] 
   }
