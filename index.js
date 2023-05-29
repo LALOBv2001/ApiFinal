@@ -12,10 +12,10 @@ const redoc = require('redoc-express');
 const theme = new SwaggerTheme('v3');
 require('dotenv').config();
 
-const port =process.env.MYSQLPORT||8084;
+const port =process.env.PORT||8084;
 const dbConfig={
   host:process.env.MYSQLHOST || "localhost",
-  port:process.env.MYSQLPORT||"8084",
+  port:process.env.MYSQLPORT||"3306",
   host:process.env.MYSQLUSER||"root",
   host:process.env.MYSQLPASSWORD||"",
   host:process.env.MYSQLDATABASE||"basewebvuelo"
@@ -67,7 +67,7 @@ app.get('/vuelo/', async (req, res) => {
   // console.log(req.params.carrera)
   const connection = await mysql.createConnection(dbConfig);
   // query database
-  const [rows, fields] = await connection.execute("SELECT * FROM vuelo");
+  const [rows, fields] = await connection.execute("SELECT * FROM `vuelo`");
   // res.jsonp({alumnos:'Peticion get a la ruta de alumnos '+req.params.carrera})
   res.json(rows);
 });
