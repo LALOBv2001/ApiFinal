@@ -12,7 +12,7 @@ const redoc = require('redoc-express');
 const theme = new SwaggerTheme('v3');
 require('dotenv').config();
 
-const port =process.env.PORT||8084;
+const port =process.env.MYSQLPORT||8084;
 const dbConfig={
   host:process.env.MYSQLHOST || "localhost",
   port:process.env.MYSQLPORT||"8084",
