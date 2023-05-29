@@ -10,15 +10,24 @@ const { SwaggerTheme } = require('swagger-themes');
 const redoc = require('redoc-express');
 //Thema swagger json
 const theme = new SwaggerTheme('v3');
+require('dotenv').config();
 
+const port =process.env.PORT||8084;
+const dbConfig={
+  host:process.env.DB_HOST || "localhost",
+  port:process.env.DB_PORT||"8084",
+  host:process.env.DB_USER||"root",
+  host:process.env.DB_PASSWORD||"",
+  host:process.env.DB_NAME||"basewebvuelo",
+}
 const options = {
   explorer: true,
   customCss: theme.getBuffer('Monokai')
 };
-var HOST= "containers-us-west-25.railway.app";
-var USER= "root";
-var DATABASE= "railway"
-var PASSWORD="Nd2WbRZa62wezswKIWT0";
+// var HOST= "containers-us-west-25.railway.app";
+// var USER= "root";
+// var DATABASE= "railway"
+// var PASSWORD="Nd2WbRZa62wezswKIWT0";
 
 const ContenidoReadme = fs.readFileSync(path.join(__dirname)+'/README.md',{encoding:'utf8',flag:'r'})
 const apidef_string = fs.readFileSync(path.join(__dirname)+'/APIdef.json',{encoding:'utf8',flag:'r'})
@@ -56,12 +65,7 @@ app.use(cors());
 Parametro en la ruta*/
 app.get('/vuelo/', async (req, res) => {
   // console.log(req.params.carrera)
-  const connection = await mysql.createConnection({
-    host: HOST,
-    user: USER,
-    database: DATABASE,
-    password:PASSWORD,
-  });
+  const connection = await mysql.createConnection(dbConfig);
   // query database
   const [rows, fields] = await connection.execute("SELECT * FROM vuelo");
   // res.jsonp({alumnos:'Peticion get a la ruta de alumnos '+req.params.carrera})
@@ -89,12 +93,7 @@ app.get('/vuelo/', async (req, res) => {
  */
 app.post("/vuelo", async (req, res) => {
   // console.log(req.params.carrera)
-  const connection = await mysql.createConnection({
-    host: HOST,
-    user: USER,
-    database: DATABASE,
-    password:PASSWORD
-  });
+  const connection = await mysql.createConnection(dbConfig);
   // query database
   const {
     ID,
@@ -137,7 +136,7 @@ app.post("/vuelo", async (req, res) => {
  *        description: No se encontro el vuelo solicitado
  */
 app.get('/vuelo/:id',async(req,res)=>{
-   const connection = await mysql.createConnection({host:HOST, user: USER, database: DATABASE,password:PASSWORD,});
+   const connection = await mysql.createConnection(dbConfig);
 // query database
   const [rows, fields] = await connection.execute('SELECT * FROM vuelo where id = ?',[req.params.id]);
   if(rows.length==0){
@@ -167,12 +166,7 @@ app.get('/vuelo/:id',async(req,res)=>{
 app.delete("/vuelo/:id", async (req, res) => {
   // console.log(req.params.carrera)
   const miID = req.params.id;
-  const connection = await mysql.createConnection({
-    host: HOST,
-    user: USER,
-    database: DATABASE,
-    password:PASSWORD,
-  });
+  const connection = await mysql.createConnection(dbConfig);
   // query database
   await connection.query("delete from vuelo where id = ?", [miID]);
   // res.json(rows);
@@ -211,12 +205,7 @@ app.delete("/vuelo/:id", async (req, res) => {
  */
 app.put("/vuelo/:id", async (req, res) => {
   const miID = req.params.id;
-  const connection = await mysql.createConnection({
-    host: HOST,
-    user: USER,
-    database: DATABASE,
-    password:PASSWORD,
-  });
+  const connection = await mysql.createConnection(dbConfig);
   const {
     NombrePiloto,
     NombreCopiloto,
@@ -269,7 +258,7 @@ app.use((req, res) => {
   res.status(404).json({ estado: "Ruta no encontrada" });
 });
 
-app.listen(7630, () => {
+app.listen(port, () => {
   console.log("Servidor express escuchando en el puerto 7630 de mi ApiFinal");
 });
 
