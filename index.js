@@ -22,7 +22,7 @@ const dbConfig={
 }
 const options = {
   explorer: true,
-  customCss: theme.getBuffer('Monokai')
+  customCss: theme.getBuffer('dark')
 };
 // var HOST= "containers-us-west-25.railway.app";
 // var USER= "root";
