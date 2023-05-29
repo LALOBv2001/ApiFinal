@@ -18,7 +18,7 @@ const dbConfig={
   port:process.env.MYSQLPORT||"8084",
   host:process.env.MYSQLUSER||"root",
   host:process.env.MYSQLPASSWORD||"",
-  host:process.env.MYSQLDATABASE||"basewebvuelo",
+  host:process.env.MYSQLDATABASE||"basewebvuelo"
 }
 const options = {
   explorer: true,
