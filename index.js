@@ -14,10 +14,10 @@ require('dotenv').config();
 
 const port =process.env.PORT||8084;
 const dbConfig={
-  host:process.env.DB_HOST || "localhost",
-  port:process.env.DB_PORT||"8084",
-  host:process.env.DB_USER||"root",
-  host:process.env.DB_PASSWORD||"",
+  host:process.env.MYSQLHOST || "localhost",
+  port:process.env.MYSQLPORT||"8084",
+  host:process.env.MYSQLUSER||"root",
+  host:process.env.MYSQLPASSWORD||"",
   host:process.env.DB_NAME||"basewebvuelo",
 }
 const options = {
