@@ -42,9 +42,9 @@ const swaggerOptions = {
 };
 let redocTheme_objeto = JSON.parse(apidef_string)
 
+app.use(cors());
 app.use(express.json())
 app.use(express.text());
-app.use(cors());
 
 
  /**
