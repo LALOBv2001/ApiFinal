@@ -16,9 +16,9 @@ const port =process.env.PORT||8084;
 const dbConfig={
   host:process.env.MYSQLHOST || "localhost",
   port:process.env.MYSQLPORT||"3306",
-  host:process.env.MYSQLUSER||"root",
-  host:process.env.MYSQLPASSWORD||"",
-  host:process.env.MYSQLDATABASE||"basewebvuelo"
+  user:process.env.MYSQLUSER||"root",
+  password:process.env.MYSQLPASSWORD||"",
+  database:process.env.MYSQLDATABASE||"basewebvuelo"
 }
 const options = {
   explorer: true,
