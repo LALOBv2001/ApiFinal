@@ -96,7 +96,6 @@ app.post("/vuelo", async (req, res) => {
   const connection = await mysql.createConnection(dbConfig);
   // query database
   const {
-    ID,
     NombrePiloto,
     NombreCopiloto,
     CapacidadPasajeros,
@@ -107,7 +106,7 @@ app.post("/vuelo", async (req, res) => {
     CapacidadEquipajePasajero,
     DuracionVueloHoras,
   } = req.body;
-  let sentencia = `insert into vuelo values('${ID}','${NombrePiloto}','${NombreCopiloto}','${CapacidadPasajeros}','${CapacidadGalonesCombustible}','${PaisDespegue}','${PaisAterrizaje}','${CostoBoleto}','${CapacidadEquipajePasajero}','${DuracionVueloHoras}')`;
+  let sentencia = `insert into vuelo values('${NombrePiloto}','${NombreCopiloto}','${CapacidadPasajeros}','${CapacidadGalonesCombustible}','${PaisDespegue}','${PaisAterrizaje}','${CostoBoleto}','${CapacidadEquipajePasajero}','${DuracionVueloHoras}')`;
   await connection.execute(sentencia);
   //   const [rows, fields] = await connection.execute(sentencia);
   // res.jsonp({alumnos:'Peticion get a la ruta de alumnos '+req.params.carrera})
